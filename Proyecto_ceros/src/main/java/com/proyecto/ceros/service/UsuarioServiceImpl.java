@@ -23,9 +23,9 @@ public class UsuarioServiceImpl implements UsuarioService
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Usuario> findById(Long id) 
+	public Optional<Usuario> findById(Long cedula) 
 	{
-		return usuariodao.findById (id);
+		return usuariodao.findById (cedula);
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class UsuarioServiceImpl implements UsuarioService
 
 	@Override
 	@Transactional
-	public void delete(Long id) 
+	public void delete(Long cedula) 
 	{
-		usuariodao.deleteById(id);
+		usuariodao.deleteById(cedula);
 	}
 }

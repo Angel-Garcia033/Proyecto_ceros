@@ -36,10 +36,10 @@ public class ClienteController
 	}
 	
 	//Mostrar un cliente
-	@GetMapping ("/{id}")
-	public ResponseEntity<?> read(@PathVariable(value= "id") Long clienteid)
+	@GetMapping ("/{cedula}")
+	public ResponseEntity<?> read(@PathVariable(value= "cedula") Long clientecedula)
 	{
-		Optional<Cliente> ucliente = clienteservice.findById(clienteid);
+		Optional<Cliente> ucliente = clienteservice.findById(clientecedula);
 		
 		if (!ucliente.isPresent())
 		{
@@ -50,10 +50,10 @@ public class ClienteController
 	}
 	
 	//Actualizar un cliente
-	@PutMapping ("/{id}")
-	public ResponseEntity<?> update(@RequestBody Cliente clienteDetails, @PathVariable(value = "id") Long clienteid)
+	@PutMapping ("/{cedula}")
+	public ResponseEntity<?> update(@RequestBody Cliente clienteDetails, @PathVariable(value = "cedula") Long clientecedula)
 	{
-		Optional<Cliente> icliente = clienteservice.findById(clienteid);
+		Optional<Cliente> icliente = clienteservice.findById(clientecedula);
 		
 		if (!icliente.isPresent())
 		{
@@ -70,15 +70,15 @@ public class ClienteController
 	}
 	
 	//Eliminar un cliente
-	@DeleteMapping ("/{id}")
-	public ResponseEntity<?> delete (@PathVariable(value = "id") Long clienteid)
+	@DeleteMapping ("/{cedula}")
+	public ResponseEntity<?> delete (@PathVariable(value = "cedula") Long clientecedula)
 	{
-		if (!clienteservice.findById(clienteid).isPresent())
+		if (!clienteservice.findById(clientecedula).isPresent())
 		{
 			return ResponseEntity.notFound().build();
 		}
 		
-		clienteservice.delete(clienteid);
+		clienteservice.delete(clientecedula);
 		
 		return ResponseEntity.ok().build();
 	}

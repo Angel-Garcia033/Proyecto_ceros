@@ -23,9 +23,9 @@ public class ClienteServiceImpl implements ClienteService
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Cliente> findById(Long id) 
+	public Optional<Cliente> findById(Long cedula) 
 	{
-		return clientedao.findById(id);
+		return clientedao.findById(cedula);
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class ClienteServiceImpl implements ClienteService
 
 	@Override
 	@Transactional
-	public void delete(Long id) 
+	public void delete(Long cedula) 
 	{
-		clientedao.deleteById(id);
+		clientedao.deleteById(cedula);
 	}	
 }

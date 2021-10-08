@@ -28,7 +28,7 @@ public class UsuarioController
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	//Crear usuario
+	//Crear usuarios
 	@PostMapping
 	public ResponseEntity<?> create (@RequestBody Usuario usuario)
 	{
@@ -36,10 +36,10 @@ public class UsuarioController
 	}
 	
 	//Leer un usuario
-	@GetMapping("/{id}")
-	public ResponseEntity<?> read (@PathVariable(value="id") Long usuarioid)
+	@GetMapping("/{cedula}")
+	public ResponseEntity<?> read (@PathVariable(value="cedula") Long cedula)
 	{
-		Optional <Usuario> oUsuario = usuarioService.findById(usuarioid);
+		Optional <Usuario> oUsuario = usuarioService.findById(cedula);
 		
 		if (!oUsuario.isPresent())
 		{
@@ -52,10 +52,10 @@ public class UsuarioController
 	}
 	
 	//Actualizar un usuario
-	@PutMapping("/{id}")
-	public ResponseEntity<?> update (@RequestBody Usuario usuarioDetails, @PathVariable(value = "id") Long usuarioid)
+	@PutMapping("/{cedula}")
+	public ResponseEntity<?> update (@RequestBody Usuario usuarioDetails, @PathVariable(value = "cedula") Long cedula)
 	{
-		Optional <Usuario> uUsuario = usuarioService.findById(usuarioid);
+		Optional <Usuario> uUsuario = usuarioService.findById(cedula);
 		
 		if (!uUsuario.isPresent())
 		{
@@ -73,15 +73,15 @@ public class UsuarioController
 	}
 	
 	//Borrar usuario
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete	(@PathVariable(value = "id") Long usuarioid)
+	@DeleteMapping("/{cedula}")
+	public ResponseEntity<?> delete	(@PathVariable(value = "cedula") Long cedula)
 	{
-		if (!usuarioService.findById(usuarioid).isPresent())
+		if (!usuarioService.findById(cedula).isPresent())
 		{
 			return ResponseEntity.notFound().build();
 		}
 		
-		usuarioService.delete(usuarioid);
+		usuarioService.delete(cedula);
 		return ResponseEntity.ok().build();
 	}
 
