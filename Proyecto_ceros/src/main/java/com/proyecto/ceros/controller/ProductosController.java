@@ -52,7 +52,7 @@ public class ProductosController
 	
 	//Actualizar un producto
 	@PutMapping("/{codigo_producto}")
-	public ResponseEntity<?> update (@RequestBody Producto usuarioDetails, @PathVariable(value = "codigo_producto") Long codigo_producto)
+	public ResponseEntity<?> update (@RequestBody Producto productoDetails, @PathVariable(value = "codigo_producto") Long codigo_producto)
 	{
 		Optional <Producto> uproductos = productosService.findById(codigo_producto);
 		
@@ -61,12 +61,12 @@ public class ProductosController
 			return ResponseEntity.notFound().build();
 		}
 
-		uproductos.get().setProveedores(usuarioDetails.getProveedores());
-		uproductos.get().setCodigo_producto(usuarioDetails.getCodigo_producto());
-		uproductos.get().setIvacompra(usuarioDetails.getIvacompra());
-		uproductos.get().setNombre_producto(usuarioDetails.getNombre_producto());
-		uproductos.get().setPrecio_compra(usuarioDetails.getPrecio_compra());
-		uproductos.get().setPrecio_venta(usuarioDetails.getPrecio_venta());
+		uproductos.get().setProveedores(productoDetails.getProveedores());
+		uproductos.get().setCodigo_producto(productoDetails.getCodigo_producto());
+		uproductos.get().setIvacompra(productoDetails.getIvacompra());
+		uproductos.get().setNombre_producto(productoDetails.getNombre_producto());
+		uproductos.get().setPrecio_compra(productoDetails.getPrecio_compra());
+		uproductos.get().setPrecio_venta(productoDetails.getPrecio_venta());
 			
 		return ResponseEntity.status(HttpStatus.CREATED).body(productosService.save(uproductos.get()));
 	}
